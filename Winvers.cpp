@@ -73,7 +73,7 @@ void CWindowsVersion::GetDetails10()
 	else
 	{
 		m_bIsServer = true;
-		lstrcpy(m_szPlatform, "Windows Server 10");
+		lstrcpy(m_szPlatform, "Windows Server 2016");
 	}
 
 	DetectProductInfo();

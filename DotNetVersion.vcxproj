@@ -100,9 +100,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DotNetVersion.cpp" />
+    <ClCompile Include="Framework.cpp" />
+    <ClCompile Include="RegistryKeys.cpp" />
+    <ClCompile Include="ServicePack.cpp" />
+    <ClCompile Include="Support.cpp" />
     <ClCompile Include="Winvers.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Framework.h" />
+    <ClInclude Include="RegistryKeys.h" />
+    <ClInclude Include="ServicePack.h" />
+    <ClInclude Include="Support.h" />
     <ClInclude Include="Winvers.h" />
   </ItemGroup>
   <ItemGroup>
