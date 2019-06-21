@@ -1,4 +1,6 @@
 #include "WinVers.h"
+#include "registrykeys.h"
+#include "support.h"
 
 #ifndef VER_SUITE_WH_SERVER
 #define VER_SUITE_WH_SERVER 0x00008000 // for Windows Home Server
@@ -22,6 +24,7 @@ CWindowsVersion::CWindowsVersion()
 	ZeroMemory(&m_szVersionFmt, sizeof(m_szVersionFmt));
 	ZeroMemory(&m_szMiscInfo, sizeof(m_szMiscInfo));
 	ZeroMemory(&m_szPlatform, sizeof(m_szPlatform));
+	ZeroMemory(&m_szSemiAnnual, sizeof(m_szSemiAnnual));
 
 	ZeroMemory(&m_osV, sizeof(OSVERSIONINFOEX));
 	m_osV.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
@@ -73,10 +76,19 @@ void CWindowsVersion::GetDetails10()
 	else
 	{
 		m_bIsServer = true;
-		lstrcpy(m_szPlatform, "Windows Server 2016");
+		if (m_nBuild >= 17763)
+			lstrcpy(m_szPlatform, "Windows Server 2019");
+		else
+			lstrcpy(m_szPlatform, "Windows Server 2016");
 	}
 
 	DetectProductInfo();
+
+	// determine Windows 10 semi-annual release
+	TCHAR szRegValue[MAX_PATH];
+	RegistryGetValue(HKEY_LOCAL_MACHINE, g_szWin10SemiAnnualRegKeyName, g_szWin10SemiAnnualRegValueName, NULL, (LPBYTE)szRegValue, MAX_PATH);
+	lstrcat(m_szSemiAnnual, "v");
+	lstrcat(m_szSemiAnnual, szRegValue);
 
 	// append the processor architecture
 	lstrcat(m_szPlatform, " ");
@@ -328,12 +340,15 @@ LPCSTR CWindowsVersion::GetPlatformFmt()
 //
 LPCSTR CWindowsVersion::GetVersionFmt()
 {
-	if ((GetServicePackMajor() > 0) && (GetServicePackMinor() > 0))
+	if (GetMajor() == 10 && GetMinor() == 0)  // Windows 10
+		wsprintf(m_szVersionFmt, "%s\nVersion %d.%d %s Build %d", m_szPlatform, m_nMajorVers, m_nMinorVers, m_szSemiAnnual, m_nBuild);
+	else if ((GetServicePackMajor() > 0) && (GetServicePackMinor() > 0))
 		wsprintf(m_szVersionFmt, "%s SP%d.%d\nVersion %d.%d Build %d", m_szPlatform, m_nSpMajor, m_nSpMinor, m_nMajorVers, m_nMinorVers, m_nBuild);
 	else if (GetServicePackMajor() > 0)
 		wsprintf(m_szVersionFmt, "%s SP%d\nVersion %d.%d Build %d", m_szPlatform, m_nSpMajor, m_nMajorVers, m_nMinorVers, m_nBuild);
 	else
 		wsprintf(m_szVersionFmt, "%s\nVersion %d.%d Build %d", m_szPlatform, m_nMajorVers, m_nMinorVers, m_nBuild);
+
 	return m_szVersionFmt;
 }
 

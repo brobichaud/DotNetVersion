@@ -145,7 +145,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 
 	lstrcat(szMessage, szTemp);
 
-	MessageBox(NULL, szMessage, _T("DotNet Version Information v4.7"), MB_OK | MB_ICONINFORMATION);
+	MessageBox(NULL, szMessage, _T("DotNet Version Information v4.8"), MB_OK | MB_ICONINFORMATION);
 
 	return 0;
 }

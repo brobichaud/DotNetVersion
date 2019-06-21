@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <assembly manifestVersion="1.0" xmlns="urn:schemas-microsoft-com:asm.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3">
-	<assemblyIdentity name="DotNetVersion" version="4.6.0.0" type="win32" processorArchitecture="x86" />
+	<assemblyIdentity name="DotNetVersion" version="4.8.0.0" type="win32" processorArchitecture="x86" />
 	<description>Determines system and framework version</description>
 	<trustInfo xmlns="urn:schemas-microsoft-com:asm.v3">
 		<security>

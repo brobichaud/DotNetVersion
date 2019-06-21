@@ -57,6 +57,7 @@ private:
 	int m_nBuild;           // build number
 	bool m_bIsServer;       // true if Server edition
 	char m_szMiscInfo[_MAX_PATH];   // CSDVersion misc info data
+	char m_szSemiAnnual[_MAX_PATH]; // semi-annual version
 };
 
 #endif

@@ -8,7 +8,9 @@ void GetNetFx4xRelease(char* szRelease)
 	lstrcpy(szRelease, "");
 	RegistryGetValue(HKEY_LOCAL_MACHINE, g_szNetfx4xRegKeyName, g_szNetfx4xReleaseRegValueName, NULL, (LPBYTE)&dwRelValue, sizeof(DWORD));
 
-	if (dwRelValue >= 461808)
+	if (dwRelValue >= 528040)
+		lstrcpy(szRelease, "4.8");
+	else if (dwRelValue >= 461808)
 		lstrcpy(szRelease, "4.7.2");
 	else if (dwRelValue >= 461308)
 		lstrcpy(szRelease, "4.7.1");

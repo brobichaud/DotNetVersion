@@ -36,3 +36,5 @@ extern const TCHAR *g_szNetfx10SpMSIRegKeyName;
 extern const TCHAR *g_szNetfx10SpOCMRegKeyName;
 extern const TCHAR *g_szNetfx10SpRegValueName;
 
+extern const TCHAR* g_szWin10SemiAnnualRegKeyName;
+extern const TCHAR* g_szWin10SemiAnnualRegValueName;

@@ -35,3 +35,5 @@ const TCHAR *g_szNetfx10SpMSIRegKeyName = _T("Software\\Microsoft\\Active Setup\
 const TCHAR *g_szNetfx10SpOCMRegKeyName = _T("Software\\Microsoft\\Active Setup\\Installed Components\\{FDC11A6F-17D1-48f9-9EA3-9051954BAA24}");
 const TCHAR *g_szNetfx10SpRegValueName = _T("Version");
 
+const TCHAR* g_szWin10SemiAnnualRegKeyName = _T("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion");
+const TCHAR* g_szWin10SemiAnnualRegValueName = _T("ReleaseId");
